@@ -1,0 +1,41 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558 
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "command": "g++",
+    "type": "shell",
+    "terminal": {
+        "reveal": "always"
+    },
+    "suppressTaskName": true,
+    "tasks": [
+        {
+            "label": "Build",
+            "linux": {
+                "args": [
+                    "-g",
+                    "main.cpp",
+                    "buildarea.cpp",
+                    "-o",
+                    "Builds/Linux_Build/engine"
+                ]
+            },
+            "windows": {
+                "args": [
+                    "-g",
+                    "main.cpp",
+                    "-o",
+                    "Builds/Win_Build/engine"
+                ]
+            },
+            "osx": {
+                "args": [
+                    "-g",
+                    "main.cpp",
+                    "-o",
+                    "Builds/OSX_Build/engine"
+                ]
+            },
+        }
+    ]
+}
