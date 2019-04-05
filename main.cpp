@@ -1,4 +1,6 @@
 #include <iostream>
+#include <GL/freeglut.h>
+#include <GL/gl.h>
 #include "buildarea.h"
 
 using namespace std;
