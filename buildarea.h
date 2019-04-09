@@ -4,8 +4,6 @@
 #include <fstream>
 #include <iostream>
 
-using namespace std;
+std::vector<std::vector<char>> readFile(std::string inFile);
 
-vector<vector<char>> readFile(string inFile);
-
-void printArea(vector<vector<char>> area);
+void printArea(std::vector<std::vector<char>> area);
