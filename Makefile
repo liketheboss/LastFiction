@@ -5,4 +5,6 @@ main: main.cpp
 buildarea: buildarea.cpp buildarea.h
 	g++ -c buildarea.cpp
 clean:
-	rm *.o lastfiction
+	rm *.o lastfiction OpenGLExample
+example:
+	g++ opengldemo.cpp -lglut -lGL -lGLEW -lGLU -o OpenGLExample 
