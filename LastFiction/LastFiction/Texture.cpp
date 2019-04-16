@@ -1,34 +1,28 @@
-#include "Texture.h"
+#include "Tile.h"
 
-
-
-Texture::Texture(): _sdlTexture(nullptr), _width(0), _height(0)
+Tile::Tile(SDL_Texture* texture, SDL_Rect renderQuad)
 {
+	_sdlTexture = texture;
+	_renderQuad = renderQuad;
 }
 
-
-Texture::~Texture()
+Tile::~Tile()
 = default;
 
-bool Texture::loadFromFile(std::string path)
+bool Tile::loadFromFile(std::string path)
 {
 	return false;
 }
 
-void Texture::free()
+void Tile::free()
 {
 }
 
-void Texture::render(int x, int y, SDL_Renderer * renderer, SDL_Rect * clip)
+void Tile::render(SDL_Renderer * renderer, SDL_Rect * clip)
 {
 }
 
-int Texture::getWidth()
+SDL_Rect Tile::getRenderQuad()
 {
-	return _width;
-}
-
-int Texture::getHeight()
-{
-	return _height;
+	return _renderQuad;
 }

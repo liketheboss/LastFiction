@@ -1,15 +1,13 @@
 #include <SDL.h>
 #include <cstdio>
 #include <cstdlib>
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+#include "Game.h"
+const int SCREEN_WIDTH = 768;
+const int SCREEN_HEIGHT = 720;
 
 int main(int argc, char *argv[]) {
 	//The window we'll be rendering to
-	SDL_Window* window = NULL;
-
-	//The surface contained by the window
-	SDL_Surface* screenSurface = NULL;
+	SDL_Window* window = nullptr;
 
 	//Initialize SDL
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -17,32 +15,26 @@ int main(int argc, char *argv[]) {
 		printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
 		exit(EXIT_FAILURE);
 	}
+	if (!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0"))
+	{
+		printf("Warning: Pixel texture filtering not enabled!");
+		exit(EXIT_FAILURE);
+	}
 
 	//Create window
-	window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
-	if (window == NULL)
+	window = SDL_CreateWindow("Last Fiction", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+	if (window == nullptr)
 	{
 		printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
 		exit(EXIT_FAILURE);
 	}
 
-	//Get window surface
-	screenSurface = SDL_GetWindowSurface(window);
+	Game* game = new Game(window);
+	game->init();
 
-	//Fill the surface white
-	SDL_FillRect(screenSurface, NULL, SDL_MapRGB(screenSurface->format, 0xFF, 0xFF, 0xFF));
+	game->run();
 
-	//Update the surface
-	SDL_UpdateWindowSurface(window);
-
-	//Wait two seconds
-	SDL_Delay(2000);
-
-	//Destroy window
-	SDL_DestroyWindow(window);
-
-	//Quit SDL subsystems
-	SDL_Quit();
+	game->clean();
 
 	return EXIT_SUCCESS;
 }
