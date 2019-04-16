@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "Handler.h"
 
 const int Game::FRAMES_PER_SECOND = 60;
 const int Game::FRAME_DELAY = 1000 / FRAMES_PER_SECOND;
@@ -7,50 +8,50 @@ const int Game::HOR_TILES = 16;
 const int Game::VERT_TILES = 15;
 const int Game::DISPLAY_TILE_SIZE = 16;
 
-Game::Game(SDL_Window* window)
+Game::Game(std::string title, int width, int height)
 {
-	_window = window;
-	_quit = false;
+	setWindow(title, width, height);
+	_title = title;
+	_width = width;
+	_height = height;
 }
 
 Game::~Game()
 = default;
 
-SDL_Window* Game::getWindow()
+void Game::setWindow(std::string title, int width, int height)
 {
-	return this->_window;
+	_window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN);
+	if (_window == nullptr)
+	{
+		printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
+		exit(EXIT_FAILURE);
+	}
 }
 
 void Game::init()
 {
 	_renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED);
-	//Initialize renderer color
-	SDL_SetRenderDrawColor(_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-	//Initialize PNG loading
 	IMG_Init(IMG_INIT_PNG);
+
+	SDL_SetRenderDrawColor(_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderSetLogicalSize(_renderer, 256, 240);
 
+	_handler = new Handler(this);
 	_textureManager = TextureManager(_renderer);
 	_tileSets = TileSetGenerator::generateTileSets();
-
-	std::vector<std::vector<std::string>> map = std::vector<std::vector<std::string>>();
-	for (int i = 0; i < HOR_TILES; i++)
-	{
-		std::vector<std::string> row = std::vector<std::string>();
-		for (int i = 0; i < VERT_TILES; i++)
-		{
-			std::string thing = std::to_string(rand() % 10);
-			row.emplace_back(thing);
-		}
-		map.push_back(row);
-	}
-	_map = Map(map, "Basic Map");
 
 	_textures = std::vector<SDL_Texture*>();
 	for (int i = 0; i < TILE_SET_AMOUNT; i++)
 	{
 		_textures.push_back(_textureManager.loadTexture(TileSetGenerator::PATHS[i]));
 	}
+
+	std::string path = "Resources/corneria_overworld.txt";
+	_map = new Map(_handler, path, std::string("corneria_overworld"),
+		TILE_SET_OVERWORLD, _textures[TILE_SET_OVERWORLD], _tileSets[TILE_SET_OVERWORLD]);
+
+	_quit = false;
 }
 
 void Game::run()
@@ -97,16 +98,8 @@ void Game::render()
 	SDL_SetRenderDrawColor(_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(_renderer);
 
-	int size = int(_map.getGrid().size());
-	for (int x = 0; x < size; x++)
-	{
-		int ysize = int(_map.getGrid()[x].size());
-		for (int y = 0; y < ysize; y++)
-		{
-			_textureManager.render(_textures[0], _tileSets[TILE_SET_OVERWORLD][std::stoi(_map.getGrid()[x][y])], {
-				x*DISPLAY_TILE_SIZE, y*DISPLAY_TILE_SIZE, DISPLAY_TILE_SIZE, DISPLAY_TILE_SIZE});
-		}
-	}
+	_map->render();
+
 	SDL_RenderPresent(_renderer);
 }
 

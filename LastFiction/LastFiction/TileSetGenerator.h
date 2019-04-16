@@ -7,7 +7,8 @@
 enum TileSets
 {
 	TILE_SET_OVERWORLD = 0,
-	TILE_SET_AMOUNT = 1
+	TILE_SET_TOWN,
+	TILE_SET_AMOUNT
 };
 
 class TileSetGenerator

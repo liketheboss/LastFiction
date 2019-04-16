@@ -31,11 +31,20 @@
     <Filter Include="Header Files\Texture">
       <UniqueIdentifier>{6d5074ca-be5d-4370-994c-7ddd814793d5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Object">
+    <Filter Include="Header Files\Entity">
       <UniqueIdentifier>{9da727c2-7809-474e-9a02-ec4a1c3dc9a8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Object">
+    <Filter Include="Source Files\Entity">
       <UniqueIdentifier>{639d8cb4-3c2c-4620-a127-a28d01e7dd91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Tile Sets">
+      <UniqueIdentifier>{edeaf86d-ca8b-4a52-b852-2eedc1365632}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Maps">
+      <UniqueIdentifier>{ff7b2c15-c3da-4871-814f-2c9195fca234}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Sprites">
+      <UniqueIdentifier>{bab1cd5f-df6a-4589-bc3b-d0c7188de4f6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -50,6 +59,9 @@
     </ClInclude>
     <ClInclude Include="TileSetGenerator.h">
       <Filter>Header Files\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Handler.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -68,5 +80,24 @@
     <ClCompile Include="TileSetGenerator.cpp">
       <Filter>Source Files\Texture</Filter>
     </ClCompile>
+    <ClCompile Include="Handler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\town.png">
+      <Filter>Resource Files\Tile Sets</Filter>
+    </Image>
+    <Image Include="Resources\overworld.png">
+      <Filter>Resource Files\Tile Sets</Filter>
+    </Image>
+    <Image Include="Resources\sprites\heroes.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Resources\corneria_overworld.txt">
+      <Filter>Resource Files\Maps</Filter>
+    </Text>
   </ItemGroup>
 </Project>

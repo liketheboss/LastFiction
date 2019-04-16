@@ -4,26 +4,37 @@
 #include "Map.h"
 #include "TileSetGenerator.h"
 
+class Handler;
+
 class Game
 {
 private:
 	bool _quit;
 
+	std::string _title;
+	int _width;
+	int _height;
+
 	SDL_Window* _window;
 	SDL_Renderer* _renderer;
 
 	TextureManager _textureManager;
-	Map _map;
+	Map* _map;
 
 	std::vector<SDL_Texture*> _textures;
-
 	std::vector<std::vector<SDL_Rect>> _tileSets;
 
+
+
+	Handler* _handler;
+
 public:
-	Game(SDL_Window* window);
+	Game(std::string title, int width, int height);
 	~Game();
 
-	SDL_Window* getWindow();
+	SDL_Window* getWindow() { return _window; };
+	void setWindow(std::string title, int width, int height);
+	TextureManager getTextureManager() { return _textureManager;  }
 
 	void init();
 
@@ -33,6 +44,10 @@ public:
 	void tick();
 	void render();
 	void clean();
+
+	int getWidth() { return _width; }
+	int getHeight() { return _height; }
+
 
 	static const int FRAMES_PER_SECOND;
 	static const int FRAME_DELAY;

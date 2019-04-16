@@ -2,8 +2,6 @@
 #include <cstdio>
 #include <cstdlib>
 #include "Game.h"
-const int SCREEN_WIDTH = 768;
-const int SCREEN_HEIGHT = 720;
 
 int main(int argc, char *argv[]) {
 	//The window we'll be rendering to
@@ -21,15 +19,7 @@ int main(int argc, char *argv[]) {
 		exit(EXIT_FAILURE);
 	}
 
-	//Create window
-	window = SDL_CreateWindow("Last Fiction", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
-	if (window == nullptr)
-	{
-		printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
-		exit(EXIT_FAILURE);
-	}
-
-	Game* game = new Game(window);
+	Game* game = new Game("Last Fiction", 768, 720);
 	game->init();
 
 	game->run();

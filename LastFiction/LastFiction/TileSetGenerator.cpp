@@ -1,8 +1,8 @@
 #include "TileSetGenerator.h"
 
-const std::string TileSetGenerator::PATHS[] = {"Resources/overworld.png"};
-const int TileSetGenerator::ROWS[] = { 8 };
-const int TileSetGenerator::COLUMNS[] = { 14 };
+const std::string TileSetGenerator::PATHS[] = {"Resources/overworld.png", "Resources/town.png"};
+const int TileSetGenerator::ROWS[] = { 8, 4 };
+const int TileSetGenerator::COLUMNS[] = { 14, 13 };
 const int TileSetGenerator::TILE_WIDTH = 16;
 const int TileSetGenerator::TILE_HEIGHT = 16;
 
@@ -23,7 +23,7 @@ std::vector<std::vector<SDL_Rect>> TileSetGenerator::generateTileSets()
 		for (int j = 0, row = 0, column = 0; j < ROWS[i] * COLUMNS[i]; j++)
 		{
 			tiles.push_back({column * TILE_WIDTH, row * TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT});
-			if (column == COLUMNS[i])
+			if (column == COLUMNS[i] - 1)
 			{
 				column = 0;
 				row++;
