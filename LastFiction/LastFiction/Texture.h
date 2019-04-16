@@ -1,15 +1,16 @@
 #pragma once
 #include <string>
 #include <SDL.h>
+#include <map>
 
-class Texture
+class Tile
 {
 public:
 	//Initializes variables
-	Texture();
+	Tile(SDL_Texture* texture, int width, int height);
 
 	//Deallocates memory
-	~Texture();
+	~Tile();
 
 	//Loads image at specified path
 	bool loadFromFile(std::string path);
@@ -26,10 +27,11 @@ public:
 
 protected:
 	//The actual hardware texture
-	SDL_Texture * _sdlTexture{};
+	SDL_Texture* _sdlTexture;
 
 	//Image dimensions
-	int _width{};
-	int _height{};
+	int _width;
+	int _height;
+
 };
 
