@@ -1,8 +1,27 @@
 #include "TileSetGenerator.h"
 
 const std::string TileSetGenerator::PATHS[] = {"Resources/overworld.png", "Resources/town.png"};
+const std::vector<std::vector<bool>> TileSetGenerator::SOLID = {
+	{
+		1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1,
+		1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1,
+		1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1,
+		1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1,
+		1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1,
+		0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1,
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1,
+		0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1
+	}, 
+	{
+		0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+		1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+		1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1,
+		1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1
+	}};
+
 const int TileSetGenerator::ROWS[] = { 8, 4 };
 const int TileSetGenerator::COLUMNS[] = { 14, 13 };
+
 const int TileSetGenerator::TILE_WIDTH = 16;
 const int TileSetGenerator::TILE_HEIGHT = 16;
 

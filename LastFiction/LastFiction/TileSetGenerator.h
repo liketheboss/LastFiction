@@ -22,6 +22,7 @@ public:
 	static const int TILE_WIDTH;
 	static const int TILE_HEIGHT;
 	static const std::string PATHS[];
+	static const std::vector<std::vector<bool>> SOLID;
 private:
 	static const int ROWS[];
 	static const int COLUMNS[];

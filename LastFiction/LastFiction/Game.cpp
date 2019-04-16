@@ -38,18 +38,24 @@ void Game::init()
 	SDL_RenderSetLogicalSize(_renderer, 256, 240);
 
 	_handler = new Handler(this);
-	_textureManager = TextureManager(_renderer);
+	_textureManager = new TextureManager(_renderer);
 	_tileSets = TileSetGenerator::generateTileSets();
 
 	_textures = std::vector<SDL_Texture*>();
 	for (int i = 0; i < TILE_SET_AMOUNT; i++)
 	{
-		_textures.push_back(_textureManager.loadTexture(TileSetGenerator::PATHS[i]));
+		_textures.push_back(_textureManager->loadTexture(TileSetGenerator::PATHS[i]));
 	}
 
+
+	//TESTING
 	std::string path = "Resources/corneria_overworld.txt";
 	_map = new Map(_handler, path, std::string("corneria_overworld"),
 		TILE_SET_OVERWORLD, _textures[TILE_SET_OVERWORLD], _tileSets[TILE_SET_OVERWORLD]);
+
+	_player = new Player(_handler, )
+
+
 
 	_quit = false;
 }

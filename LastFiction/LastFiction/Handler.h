@@ -14,7 +14,7 @@ public:
 
 	int getWidth();
 	int getHeight();
-	TextureManager getTextureManager();
+	TextureManager* getTextureManager();
 
 	Game* getGame();
 	void setGame(Game* game);

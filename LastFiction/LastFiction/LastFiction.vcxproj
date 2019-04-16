@@ -19,18 +19,28 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Handler.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="SpriteGenerator.h" />
+    <ClInclude Include="TextureLoader.h" />
     <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="Tile.h" />
     <ClInclude Include="TileSetGenerator.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Handler.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="SpriteGenerator.cpp" />
+    <ClCompile Include="TextureLoader.cpp" />
     <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileSetGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
