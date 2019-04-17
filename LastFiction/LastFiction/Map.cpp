@@ -1,9 +1,9 @@
 #include "Map.h"
 #include "Game.h"
-#include "Tile.h"
 
 
-Map::Map(Handler* handler, std::string& file, std::string name, TileSets setType, SDL_Texture* tileSet, std::vector<SDL_Rect> srcTiles)
+Map::Map(Handler* handler, std::string& file, std::string name, TileSets setType, SDL_Texture* tileSet,
+         std::vector<SDL_Rect> srcTiles)
 {
 	_handler = handler;
 	_name = name;
@@ -27,21 +27,18 @@ void Map::loadMap(std::string& file)
 	lineStream >> set;
 
 	int y = 0;
-	_grid = std::vector<std::vector<Tile*>>();
+	_grid = std::vector<std::vector<Tile>>();
 	while(std::getline(mapFile, line))
 	{
 		lineStream = std::stringstream(line);
 
 		int x = 0;
 		int tid;
-		std::vector<Tile*> layer{};
+		std::vector<Tile> layer;
 		while (lineStream >> tid)
 		{
 			bool solid = TileSetGenerator::SOLID[set][tid];
-			Tile* tile = new Tile(this, tid, solid, _tileSet, _srcTiles[tid], {
-				x * Game::DISPLAY_TILE_SIZE, y * Game::DISPLAY_TILE_SIZE, Game::DISPLAY_TILE_SIZE,
-				Game::DISPLAY_TILE_SIZE
-				});
+			Tile tile(tid, solid);
 
 			layer.emplace_back(tile);
 
@@ -54,13 +51,18 @@ void Map::loadMap(std::string& file)
 	mapFile.close();
 }
 
+Map::Map() = default;
+
 void Map::render()
 {
-	for (auto& y : _grid)
+	for (int y = 0; y < int(_grid.size()); y++)
 	{
-		for (auto& x : y)
+		for (int x  = 0; x < int(_grid[y].size()); x++)
 		{
-			x->render();
+			_handler->getTextureManager().render(_tileSet, _srcTiles[_grid[y][x].getTid()], {
+				x * TileSetGenerator::TILE_WIDTH, y * TileSetGenerator::TILE_HEIGHT, TileSetGenerator::TILE_WIDTH,
+				TileSetGenerator::TILE_HEIGHT
+				});
 		}
 	}
 }

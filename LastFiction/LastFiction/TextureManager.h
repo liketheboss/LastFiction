@@ -5,6 +5,8 @@
 #include <SDL_image.h>
 #include "TileSetGenerator.h"
 
+class Handler;
+
 enum TileType
 {
 	TILE_GRASS = 0
@@ -13,10 +15,10 @@ enum TileType
 class TextureManager
 {
 private:
-	SDL_Renderer* _renderer;
+	Handler* _handler;
 public:
 	TextureManager();
-	TextureManager(SDL_Renderer* renderer);
+	TextureManager(Handler* handler);
 
 	SDL_Texture* loadTexture(std::string path);
 	//Renders tile at given point

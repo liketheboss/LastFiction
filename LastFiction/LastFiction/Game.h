@@ -19,11 +19,11 @@ private:
 	SDL_Window* _window;
 	SDL_Renderer* _renderer;
 
-	TextureManager* _textureManager;
+	TextureManager _textureManager;
 
 	//TESTING
-	Player* _player;
-	Map* _map;
+	Player _player;
+	Map _map;
 
 	std::vector<SDL_Texture*> _textures;
 	std::vector<std::vector<SDL_Rect>> _tileSets;
@@ -38,7 +38,7 @@ public:
 
 	SDL_Window* getWindow() { return _window; };
 	void setWindow(std::string title, int width, int height);
-	TextureManager* getTextureManager() { return _textureManager;  }
+	TextureManager getTextureManager() { return _textureManager;  }
 
 	void init();
 
@@ -52,6 +52,7 @@ public:
 	int getWidth() { return _width; }
 	int getHeight() { return _height; }
 
+	SDL_Renderer* getRenderer() { return _renderer; }
 
 	static const int FRAMES_PER_SECOND;
 	static const int FRAME_DELAY;
@@ -59,5 +60,8 @@ public:
 	static const int HOR_TILES;
 	static const int VERT_TILES;
 	static const int DISPLAY_TILE_SIZE;
+
+	static const int LOGICAL_WIDTH;
+	static const int LOGICAL_HEIGHT;
 };
 

@@ -1,10 +1,11 @@
 #include "TextureManager.h"
+#include "Handler.h"
 
 TextureManager::TextureManager()
 {
 }
 
-TextureManager::TextureManager(SDL_Renderer* renderer): _renderer(renderer) {}
+TextureManager::TextureManager(Handler* handler): _handler(handler) {}
 
 SDL_Texture* TextureManager::loadTexture(std::string path)
 {
@@ -18,7 +19,7 @@ SDL_Texture* TextureManager::loadTexture(std::string path)
 	SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 0xFF, 0xFF));
 
 	//Create texture from surface pixels
-	SDL_Texture* texture = SDL_CreateTextureFromSurface(_renderer, loadedSurface);
+	SDL_Texture* texture = SDL_CreateTextureFromSurface(_handler->getRenderer(), loadedSurface);
 	if (texture == nullptr)
 	{
 		printf("Unable to create texture from %s! SDL Error: %s\n", path.c_str(), SDL_GetError());
@@ -32,5 +33,5 @@ SDL_Texture* TextureManager::loadTexture(std::string path)
 
 void TextureManager::render(SDL_Texture* texture, SDL_Rect src, SDL_Rect dest)
 {
-	SDL_RenderCopy(_renderer, texture, &src, &dest);
+	SDL_RenderCopy(_handler->getRenderer(), texture, &src, &dest);
 }

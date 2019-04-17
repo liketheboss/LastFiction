@@ -24,8 +24,6 @@
     <ClInclude Include="Handler.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="SpriteGenerator.h" />
-    <ClInclude Include="TextureLoader.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileSetGenerator.h" />
@@ -37,15 +35,13 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="SpriteGenerator.cpp" />
-    <ClCompile Include="TextureLoader.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileSetGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\overworld.png" />
-    <Image Include="Resources\sprites\heroes.png" />
+    <Image Include="Resources\sprites\heroes_map.png" />
     <Image Include="Resources\town.png" />
   </ItemGroup>
   <ItemGroup>

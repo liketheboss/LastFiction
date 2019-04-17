@@ -19,12 +19,12 @@ int main(int argc, char *argv[]) {
 		exit(EXIT_FAILURE);
 	}
 
-	Game* game = new Game("Last Fiction", 768, 720);
-	game->init();
+	Game game = Game("Last Fiction", 768, 720);
+	game.init();
 
-	game->run();
+	game.run();
 
-	game->clean();
+	game.clean();
 
 	return EXIT_SUCCESS;
 }

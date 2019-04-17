@@ -72,12 +72,6 @@
     <ClInclude Include="Player.h">
       <Filter>Header Files\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="SpriteGenerator.h">
-      <Filter>Header Files\Texture</Filter>
-    </ClInclude>
-    <ClInclude Include="TextureLoader.h">
-      <Filter>Header Files\Texture</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -107,12 +101,6 @@
     <ClCompile Include="Player.cpp">
       <Filter>Source Files\Entity</Filter>
     </ClCompile>
-    <ClCompile Include="SpriteGenerator.cpp">
-      <Filter>Source Files\Texture</Filter>
-    </ClCompile>
-    <ClCompile Include="TextureLoader.cpp">
-      <Filter>Source Files\Texture</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\town.png">
@@ -121,7 +109,7 @@
     <Image Include="Resources\overworld.png">
       <Filter>Resource Files\Tile Sets</Filter>
     </Image>
-    <Image Include="Resources\sprites\heroes.png">
+    <Image Include="Resources\sprites\heroes_map.png">
       <Filter>Resource Files\Sprites</Filter>
     </Image>
   </ItemGroup>

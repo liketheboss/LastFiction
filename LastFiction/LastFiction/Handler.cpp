@@ -20,9 +20,14 @@ int Handler::getHeight()
 	return _game->getHeight();
 }
 
-TextureManager* Handler::getTextureManager()
+TextureManager Handler::getTextureManager()
 {
 	return _game->getTextureManager();
+}
+
+SDL_Renderer* Handler::getRenderer()
+{
+	return _game->getRenderer();
 }
 
 Game* Handler::getGame()

@@ -1,3 +1,4 @@
+#pragma once
 #include "Game.h"
 #include "Handler.h"
 
@@ -7,6 +8,9 @@ const int Game::FRAME_DELAY = 1000 / FRAMES_PER_SECOND;
 const int Game::HOR_TILES = 16;
 const int Game::VERT_TILES = 15;
 const int Game::DISPLAY_TILE_SIZE = 16;
+
+const int Game::LOGICAL_WIDTH = 256;
+const int Game::LOGICAL_HEIGHT = 224;
 
 Game::Game(std::string title, int width, int height)
 {
@@ -35,25 +39,26 @@ void Game::init()
 	IMG_Init(IMG_INIT_PNG);
 
 	SDL_SetRenderDrawColor(_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-	SDL_RenderSetLogicalSize(_renderer, 256, 240);
+	SDL_RenderSetLogicalSize(_renderer, LOGICAL_WIDTH, LOGICAL_HEIGHT);
 
 	_handler = new Handler(this);
-	_textureManager = new TextureManager(_renderer);
+	_textureManager = TextureManager(_handler);
 	_tileSets = TileSetGenerator::generateTileSets();
 
 	_textures = std::vector<SDL_Texture*>();
 	for (int i = 0; i < TILE_SET_AMOUNT; i++)
 	{
-		_textures.push_back(_textureManager->loadTexture(TileSetGenerator::PATHS[i]));
+		_textures.push_back(_textureManager.loadTexture(TileSetGenerator::PATHS[i]));
 	}
 
 
 	//TESTING
-	std::string path = "Resources/corneria_overworld.txt";
-	_map = new Map(_handler, path, std::string("corneria_overworld"),
+	std::string corneriaPath = "Resources/corneria_overworld.txt";
+	_map = Map(_handler, corneriaPath, std::string("corneria_overworld"),
 		TILE_SET_OVERWORLD, _textures[TILE_SET_OVERWORLD], _tileSets[TILE_SET_OVERWORLD]);
 
-	_player = new Player(_handler, )
+	std::string heroesPath = "Resources/sprites/heroes_map.png";
+	_player = Player(_handler, _textureManager.loadTexture(heroesPath), 0, 0);
 
 
 
@@ -104,7 +109,8 @@ void Game::render()
 	SDL_SetRenderDrawColor(_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(_renderer);
 
-	_map->render();
+	_map.render();
+	_player.render();
 
 	SDL_RenderPresent(_renderer);
 }
