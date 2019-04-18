@@ -1,5 +1,6 @@
 #include "Map.h"
 #include "Game.h"
+#include "Handler.h"
 
 
 Map::Map(Handler* handler, std::string& file, std::string name, TileSets setType, SDL_Texture* tileSet,

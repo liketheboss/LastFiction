@@ -1,5 +1,4 @@
 #include "Player.h"
-#include "Game.h"
 
 
 Player::Player() : Entity(nullptr, nullptr, 0, 0)
@@ -18,8 +17,8 @@ void Player::render()
 {
 	_handler->getTextureManager().render(_texture, {32, 32, 16, 16},
 	                                     {
-		                                     Game::LOGICAL_WIDTH / 2 - Game::DISPLAY_TILE_SIZE,
-		                                     Game::LOGICAL_HEIGHT / 2 - 3, Game::DISPLAY_TILE_SIZE,
+		                                     _x - _handler->getGameCamera().getXOffset(),
+											 _y - _handler->getGameCamera().getYOffset(), Game::DISPLAY_TILE_SIZE,
 		                                     Game::DISPLAY_TILE_SIZE
 	                                     });
 }

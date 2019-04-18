@@ -1,5 +1,6 @@
 #pragma once
 #include "TextureManager.h"
+#include "GameCamera.h"
 
 class Game;
 
@@ -14,6 +15,8 @@ public:
 
 	int getWidth();
 	int getHeight();
+
+	GameCamera getGameCamera();
 	TextureManager getTextureManager();
 	SDL_Renderer* getRenderer();
 

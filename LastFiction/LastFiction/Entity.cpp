@@ -12,3 +12,7 @@ Entity::Entity(Handler* handler, SDL_Texture* texture, int x, int y)
 Entity::~Entity()
 {
 }
+
+void Entity::render()
+{
+}

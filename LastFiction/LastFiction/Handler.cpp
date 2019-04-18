@@ -20,6 +20,11 @@ int Handler::getHeight()
 	return _game->getHeight();
 }
 
+GameCamera Handler::getGameCamera()
+{
+	return _game->getGameCamera();
+}
+
 TextureManager Handler::getTextureManager()
 {
 	return _game->getTextureManager();

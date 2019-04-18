@@ -16,6 +16,6 @@ public:
 
 	int getX() { return _x; }
 	int getY() { return _y; }
-	virtual void render() = 0;
+	virtual void render();
 };
 

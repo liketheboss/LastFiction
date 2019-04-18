@@ -1,4 +1,3 @@
-#pragma once
 #include "Game.h"
 #include "Handler.h"
 
@@ -42,6 +41,7 @@ void Game::init()
 	SDL_RenderSetLogicalSize(_renderer, LOGICAL_WIDTH, LOGICAL_HEIGHT);
 
 	_handler = new Handler(this);
+	_gameCamera = GameCamera(_handler, 0, 0);
 	_textureManager = TextureManager(_handler);
 	_tileSets = TileSetGenerator::generateTileSets();
 
@@ -58,7 +58,7 @@ void Game::init()
 		TILE_SET_OVERWORLD, _textures[TILE_SET_OVERWORLD], _tileSets[TILE_SET_OVERWORLD]);
 
 	std::string heroesPath = "Resources/sprites/heroes_map.png";
-	_player = Player(_handler, _textureManager.loadTexture(heroesPath), 0, 0);
+	_player = Player(_handler, _textureManager.loadTexture(heroesPath), 64, 64);
 
 
 

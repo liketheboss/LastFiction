@@ -4,6 +4,7 @@
 #include "Map.h"
 #include "TileSetGenerator.h"
 #include "Player.h"
+#include "GameCamera.h"
 
 class Handler;
 
@@ -20,6 +21,7 @@ private:
 	SDL_Renderer* _renderer;
 
 	TextureManager _textureManager;
+	GameCamera _gameCamera;
 
 	//TESTING
 	Player _player;
@@ -27,8 +29,6 @@ private:
 
 	std::vector<SDL_Texture*> _textures;
 	std::vector<std::vector<SDL_Rect>> _tileSets;
-
-
 
 	Handler* _handler;
 
@@ -38,7 +38,6 @@ public:
 
 	SDL_Window* getWindow() { return _window; };
 	void setWindow(std::string title, int width, int height);
-	TextureManager getTextureManager() { return _textureManager;  }
 
 	void init();
 
@@ -52,6 +51,8 @@ public:
 	int getWidth() { return _width; }
 	int getHeight() { return _height; }
 
+	GameCamera getGameCamera() { return _gameCamera; }
+	TextureManager getTextureManager() { return _textureManager; }
 	SDL_Renderer* getRenderer() { return _renderer; }
 
 	static const int FRAMES_PER_SECOND;

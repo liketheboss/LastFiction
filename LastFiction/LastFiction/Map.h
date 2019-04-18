@@ -5,8 +5,9 @@
 #include <sstream>
 #include <SDL.h>
 #include "TileSetGenerator.h"
-#include "Handler.h"
 #include "Tile.h"
+
+class Handler;
 
 class Map
 {
@@ -18,7 +19,7 @@ private:
 	SDL_Texture* _tileSet{};
 	std::vector<SDL_Rect> _srcTiles;
 
-	Handler* _handler{};
+	Handler* _handler;
 
 	void loadMap(std::string& file);
 public:
